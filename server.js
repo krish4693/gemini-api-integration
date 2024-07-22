@@ -3,7 +3,6 @@ import upload from './upload.js';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
-import path from 'path';
 
 dotenv.config();
 
@@ -40,7 +39,6 @@ app.post('/upload', upload.single('file'), async (req, res) => {
     const response = await result.response;
     const text = response.text();
 
-    // Optionally, delete the uploaded file after processing
     fs.unlinkSync(file.path);
 
     res.json({ message: 'File Uploaded Successfully', response: text });
